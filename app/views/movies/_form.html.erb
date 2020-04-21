@@ -13,12 +13,12 @@
 
   <div class="field">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, required: true %>
   </div>
 
   <div class="field">
     <%= form.label :release_year %>
-    <%= form.date_field :release_year, min: Date.new(1900, 01, 01), max: Date.today %>
+    <%= form.number_field :release_year, min: 1900, max: 2060, required: true %>
   </div>
 
   <div class="actions">

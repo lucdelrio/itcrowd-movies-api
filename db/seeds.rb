@@ -10,5 +10,5 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
 
-Movie.create(title: 'Gladiator', release_year: '1999-09-20')
+Movie.create(title: 'Gladiator', release_year: 1999)
 Person.create(first_name: 'Russell', last_name: 'Crowe')
