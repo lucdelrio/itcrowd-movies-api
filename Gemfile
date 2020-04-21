@@ -4,8 +4,11 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.3'
 
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'bootstrap', '~> 4.4.1'
 gem 'devise_token_auth'
+gem 'jquery-rails', '~> 4.3.5'
 gem 'pg', '>= 0.18', '< 2.0'
+gem 'popper_js', '~> 1.16' 
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.2'
 
