@@ -25,6 +25,7 @@ group :development, :test do
   gem 'simplecov', '~> 0.18.0', require: false
   gem 'rspec-json_expectations', '~> 2.2.0'
   gem 'rspec-rails', '~> 3.8.2'
+  gem 'shoulda-matchers', '4.0.1'
 end
 
 group :development do
