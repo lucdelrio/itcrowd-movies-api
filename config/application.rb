@@ -28,6 +28,16 @@ module ItCrowdMoviesApi
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
 
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*' 
+        resource '*',
+        headers: :any,
+        expose: ['access-token', 'expiry', 'token-type', 'uid', 'client'],
+        methods: [:get, :post, :options, :delete, :put, :patch]
+      end
+    end
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
