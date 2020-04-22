@@ -12,3 +12,6 @@
 
 Movie.create(title: 'Gladiator', release_year: 1999)
 Person.create(first_name: 'Russell', last_name: 'Crowe')
+Participation.create(person_id: Person.first.id, movie_id: Movie.first.id, role: 'actor')
+
+Admin.create(email: 'lucdelrio@itcrowd.com', password: 'itcrowd', password_confirmation: 'itcrowd')
