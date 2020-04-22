@@ -1,4 +1,4 @@
-# Itcrowd-movies-app
+# Itcrowd-movies-api
 
 * Ruby version
 
