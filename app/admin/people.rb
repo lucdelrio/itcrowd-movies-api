@@ -7,11 +7,57 @@ ActiveAdmin.register Person do
 
   filter :last_name
 
-  show do |_s|
+  show do |s|
     attributes_table do
       row :first_name
       row :last_name
       row :created_at
+    end
+
+    panel 'Actor/Actress' do
+      if !s.participations_as('actor').empty? && !s.participations_as('actress').empty?
+        'No movies as actor/actress'
+      end
+
+      if !s.participations_as('actor').empty?
+        table_for s.participations_as('actor') do |u|
+          u.column('Movies') do |t|
+            t.title.to_s
+          end
+        end
+      end
+
+      if !s.participations_as('actress').empty?
+        table_for s.participations_as('actress') do |u|
+          u.column('Movies') do |t|
+            t.title.to_s
+          end
+        end
+      end
+    end
+
+    panel 'Director' do
+      if s.participations_as('director').empty?
+        'No movies as director'
+      else
+        table_for s.participations_as('director') do |u|
+          u.column('Movies') do |t|
+            t.title.to_s
+          end
+        end
+      end
+    end
+
+    panel 'Producer' do
+      if s.participations_as('producer').empty?
+        'No movies as producer'
+      else
+        table_for s.participations_as('producer') do |u|
+          u.column('Movies') do |t|
+            t.title.to_s
+          end
+        end
+      end
     end
   end
 
