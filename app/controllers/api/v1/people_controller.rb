@@ -1,5 +1,5 @@
 module Api::v1
-  class PeopleController < ApplicationController
+  class PeopleController < ApiController
     before_action :set_person, only: [:show, :edit, :update, :destroy]
 
     # GET /people

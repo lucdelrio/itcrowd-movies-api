@@ -1,5 +1,5 @@
 module Api::v1
-  class MoviesController < ApplicationController
+  class MoviesController < ApiController
     before_action :set_movie, only: [:show, :edit, :update, :destroy]
   
     # GET /movies
