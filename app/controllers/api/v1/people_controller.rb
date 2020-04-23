@@ -1,60 +1,40 @@
-module Api::v1
+module Api::V1
   class PeopleController < ApiController
-    before_action :set_person, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, only: %i[create show update]
 
     # GET /people
     def index
-      @people = Person.all
+      render json: Person.all
     end
-
+  
     # GET /people/1
     def show
-    end
-
-    # GET /people/new
-    def new
-      @person = Person.new
-    end
-
-    # GET /people/1/edit
-    def edit
+      person = Person.find(params[:id])
+      render json: person
     end
 
     # POST /people
     def create
-      @person = Person.new(person_params)
+      person = Person.new(person_params)
+      return render json: person, status: :created if person.save
 
-      if @person.save
-        redirect_to @person, notice: 'Person was successfully created.'
-      else
-        render :new
-      end
+      render json: person.errors, status: :unprocessable_entity
     end
 
     # PATCH/PUT /people/1
     def update
-      if @person.update(person_params)
-        redirect_to @person, notice: 'Person was successfully updated.'
-      else
-        render :edit
-      end
-    end
-
-    # DELETE /people/1
-    def destroy
-      @person.destroy
-      redirect_to people_url, notice: 'Person was successfully destroyed.'
+      person = Person.find(params[:id])
+      return render json: person, status: :ok if person.update(person_params)
+    
+      render json: person.errors, status: :unprocessable_entity
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_person
-        @person = Person.find(params[:id])
-      end
-
-      # Only allow a trusted parameter "white list" through.
-      def person_params
-        params.require(:person).permit(:first_name, :last_name)
-      end
+    
+    def person_params
+      params.require(:person)
+            .permit(:first_name, :last_name,
+                    participations_attributes: %i[id movie_id role])
+    end
   end
 end

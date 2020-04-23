@@ -1,60 +1,40 @@
-module Api::v1
+module Api::V1
   class MoviesController < ApiController
-    before_action :set_movie, only: [:show, :edit, :update, :destroy]
+    before_action :authenticate_user!, only: %i[create show update]
   
     # GET /movies
     def index
-      @movies = Movie.all
+      render json: Movie.all
     end
-  
+
     # GET /movies/1
     def show
-    end
-  
-    # GET /movies/new
-    def new
-      @movie = Movie.new
-    end
-  
-    # GET /movies/1/edit
-    def edit
+      movie = Movie.find(params[:id])
+      render json: movie
     end
   
     # POST /movies
     def create
-      @movie = Movie.new(movie_params)
-  
-      if @movie.save
-        redirect_to @movie, notice: 'Movie was successfully created.'
-      else
-        render :new
-      end
+      movie = Movie.new(movie_params)
+      return render json: movie, status: :created if movie.save
+
+      render json: movie.errors, status: :unprocessable_entity
     end
-  
+
     # PATCH/PUT /movies/1
     def update
-      if @movie.update(movie_params)
-        redirect_to @movie, notice: 'Movie was successfully updated.'
-      else
-        render :edit
-      end
-    end
-  
-    # DELETE /movies/1
-    def destroy
-      @movie.destroy
-      redirect_to movies_url, notice: 'Movie was successfully destroyed.'
+      movie = Movie.find(params[:id])
+      return render json: movie, status: :ok if movie.update(movie_params)
+    
+      render json: movie.errors, status: :unprocessable_entity
     end
   
     private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_movie
-      @movie = Movie.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
     def movie_params
-      params.require(:movie).permit(:title, :release_year)
+      params.require(:movie)
+            .permit(:title, :release_year,
+                    participations_attributes: %i[id person_id role])
     end
   end    
 end

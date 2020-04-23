@@ -4,6 +4,8 @@ class Movie < ApplicationRecord
   has_many :participations, dependent: :destroy
   has_many :people, through: :participations, as: :people_participated
 
+  accepts_nested_attributes_for :participations, allow_destroy: true
+
   def people_participated
     self.people
   end
