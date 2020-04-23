@@ -9,12 +9,18 @@ jobs:
       - image: circleci/postgres:11.5
     steps:
       - checkout
-      - run: 
-          name: Install Bundler
+      - run:
+          name: Install bundler
           command: gem install bundler:2.1.2
-      - run: 
+      - run:
           name: Install dependencies
           command: bundle install
+      - run:
+          name: Database creation
+          command: bundle exec rake db:create db:schema:load --trace
+      - run:
+          name: Database migration
+          comand: bundle exec rake db:migrate
       - run:
           name: Run rubocop
           command: bundle exec rubocop
