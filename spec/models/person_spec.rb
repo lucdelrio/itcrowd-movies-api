@@ -11,14 +11,14 @@ RSpec.describe Person, type: :model do
     context 'when a person participates in a movie' do
       it 'returns person has movie' do
         person.add_movie(movie, 'director')
-        
+
         expect(person.movies).not_to be_empty
       end
 
       it 'returns the same movie and person participated' do
         person.add_movie(movie, 'director')
-        
-        expect(person.movies.first.title).to eq (movie.title)
+
+        expect(person.movies.first.title).to eq(movie.title)
       end
     end
 
@@ -28,7 +28,7 @@ RSpec.describe Person, type: :model do
         person.add_movie(movie, 'actor')
         person.add_movie(movie, 'producer')
         person.add_movie(movie, 'producer')
-        
+
         expect(person.participations_as('producer').size).to eq(2)
       end
     end

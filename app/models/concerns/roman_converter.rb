@@ -17,9 +17,10 @@ module RomanConverter
 
   def convert_to_roman(number)
     return '0' if number < 1
+
     roman = ''
     ROMAN_NUMBERS.each do |value, letter|
-      roman << letter* (number / value)
+      roman << letter * (number / value)
       number = number % value
     end
     roman

@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Person do
   index do
     column :first_name
@@ -15,11 +16,9 @@ ActiveAdmin.register Person do
     end
 
     panel 'Actor/Actress' do
-      if !s.participations_as('actor').empty? && !s.participations_as('actress').empty?
-        'No movies as actor/actress'
-      end
+      'No movies as actor/actress' if !s.participations_as('actor').empty? && !s.participations_as('actress').empty?
 
-      if !s.participations_as('actor').empty?
+      unless s.participations_as('actor').empty?
         table_for s.participations_as('actor') do |u|
           u.column('Movies') do |t|
             t.title.to_s
@@ -27,7 +26,7 @@ ActiveAdmin.register Person do
         end
       end
 
-      if !s.participations_as('actress').empty?
+      unless s.participations_as('actress').empty?
         table_for s.participations_as('actress') do |u|
           u.column('Movies') do |t|
             t.title.to_s
@@ -75,3 +74,4 @@ ActiveAdmin.register Person do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

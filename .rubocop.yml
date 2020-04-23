@@ -1,3 +1,13 @@
+AllCops:
+  TargetRubyVersion: 2.5
+  Exclude:
+    - spec/support/spec_helper.rb
+    - spec/rails_helper.rb
+    - db/**/*
+    - lib/**/*
+    - bin/*
+    - config/**/*
+
 Documentation:
   Enabled: false
 

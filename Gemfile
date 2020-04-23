@@ -3,8 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.5.3'
 
-gem 'activeadmin', '2.4'
 gem 'active_model_serializers', '~> 0.10.0'
+gem 'activeadmin', '2.4'
 gem 'devise_token_auth'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.1'
@@ -17,16 +17,16 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rack-cors'
 
 group :development, :test do
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner'
   gem 'factory_bot_rails', '5.0.2'
   gem 'faker', '1.9.3'
   gem 'rspec', '~> 3.8'
-  gem 'rubocop', '~> 0.66.0'
-  gem 'simplecov', '~> 0.18.0', require: false
   gem 'rspec-json_expectations', '~> 2.2.0'
   gem 'rspec-rails', '~> 3.8.2'
+  gem 'rubocop', '~> 0.66.0'
   gem 'shoulda-matchers', '4.0.1'
+  gem 'simplecov', '~> 0.18.0', require: false
 end
 
 group :development do
@@ -36,4 +36,4 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

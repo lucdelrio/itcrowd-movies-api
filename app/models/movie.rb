@@ -7,17 +7,18 @@ class Movie < ApplicationRecord
   accepts_nested_attributes_for :participations, allow_destroy: true
 
   def people_participated
-    self.people
+    people
   end
 
   def add_participant(person, role)
-    participations.create(person: person, role: role)    
+    participations.create(person: person, role: role)
   end
 
   def participants(role)
-    return casting if role.downcase.eql?('casting')
+    return casting if role.casecmp('casting').zero?
+
     people.includes(:participations)
-          .where('participations.role = ?', Participation::roles.dig(:"#{role.downcase.singularize}"))
+          .where('participations.role = ?', Participation.roles.dig(:"#{role.downcase.singularize}"))
   end
 
   private
@@ -27,10 +28,10 @@ class Movie < ApplicationRecord
   end
 
   def actresses
-    people.includes(:participations).where('participations.role = ?', Participation::roles.dig(:actress))
+    people.includes(:participations).where('participations.role = ?', Participation.roles.dig(:actress))
   end
 
   def actors
-    people.includes(:participations).where('participations.role = ?', Participation::roles.dig(:actor))
+    people.includes(:participations).where('participations.role = ?', Participation.roles.dig(:actor))
   end
 end

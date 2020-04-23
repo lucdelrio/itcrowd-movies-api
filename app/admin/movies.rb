@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 ActiveAdmin.register Movie do
   index do
     column :title
@@ -75,3 +76,4 @@ ActiveAdmin.register Movie do
     end
   end
 end
+# rubocop:enable Metrics/BlockLength

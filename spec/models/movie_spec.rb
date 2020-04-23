@@ -11,13 +11,13 @@ RSpec.describe Movie, type: :model do
     context 'when the participant is added as an actor' do
       it 'returns people in the movie' do
         movie.add_participant(person, 'actor')
-        
+
         expect(movie.people_participated).not_to be_empty
       end
 
       it 'returns an actor in the movie' do
         movie.add_participant(person, 'actor')
-        expect(movie.participants('actor').first.last_name).to eq (person.last_name)
+        expect(movie.participants('actor').first.last_name).to eq(person.last_name)
       end
     end
 

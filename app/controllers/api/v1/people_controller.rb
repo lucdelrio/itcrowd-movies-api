@@ -1,40 +1,42 @@
-module Api::V1
-  class PeopleController < ApiController
-    before_action :authenticate_user!, only: %i[create update]
+module Api
+  module V1
+    class PeopleController < ApiController
+      before_action :authenticate_user!, only: %i[create update]
 
-    # GET /people
-    def index
-      render json: Person.all
-    end
-  
-    # GET /people/1
-    def show
-      person = Person.find(params[:id])
-      render json: person
-    end
+      # GET /people
+      def index
+        render json: Person.all
+      end
 
-    # POST /people
-    def create
-      person = Person.new(person_params)
-      return render json: person, status: :created if person.save
+      # GET /people/1
+      def show
+        person = Person.find(params[:id])
+        render json: person
+      end
 
-      render json: person.errors, status: :unprocessable_entity
-    end
+      # POST /people
+      def create
+        person = Person.new(person_params)
+        return render json: person, status: :created if person.save
 
-    # PATCH/PUT /people/1
-    def update
-      person = Person.find(params[:id])
-      return render json: person, status: :ok if person.update(person_params)
-    
-      render json: person.errors, status: :unprocessable_entity
-    end
+        render json: person.errors, status: :unprocessable_entity
+      end
 
-    private
-    
-    def person_params
-      params.require(:person)
-            .permit(:first_name, :last_name,
-                    participations_attributes: %i[id movie_id role])
+      # PATCH/PUT /people/1
+      def update
+        person = Person.find(params[:id])
+        return render json: person, status: :ok if person.update(person_params)
+
+        render json: person.errors, status: :unprocessable_entity
+      end
+
+      private
+
+      def person_params
+        params.require(:person)
+              .permit(:first_name, :last_name,
+                      participations_attributes: %i[id movie_id role])
+      end
     end
   end
 end
