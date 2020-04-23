@@ -6,6 +6,7 @@ ActiveAdmin.register Movie do
   end
 
   filter :title
+  filter :release_year
 
   show do |s|
     attributes_table do
