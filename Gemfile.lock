@@ -302,7 +302,6 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   database_cleaner
-  devise
   devise_token_auth
   factory_bot_rails (= 5.0.2)
   faker (= 1.9.3)
