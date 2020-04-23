@@ -21,8 +21,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_bot_rails', '5.0.2'
   gem 'faker', '1.9.3'
-  gem 'rspec', '~> 3.8'
-  gem 'rspec-json_expectations', '~> 2.2.0'
   gem 'rspec-rails', '~> 3.8.2'
   gem 'rubocop', '~> 0.66.0'
   gem 'shoulda-matchers', '4.0.1'
