@@ -1,6 +1,6 @@
 module Api::V1
   class MoviesController < ApiController
-    before_action :authenticate_user!, only: %i[create show update]
+    before_action :authenticate_user!, only: %i[create update]
   
     # GET /movies
     def index

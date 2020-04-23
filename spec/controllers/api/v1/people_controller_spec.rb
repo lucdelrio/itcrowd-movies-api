@@ -13,20 +13,9 @@ RSpec.describe Api::V1::PeopleController, type: :controller do
   end
 
   describe "GET #show" do
-    context 'with invalid credentials' do
-      it 'returns status unauthorized' do
-        get :show, params: {id: person.to_param}
-        expect(response).to have_http_status(:unauthorized)
-      end
-    end
-    
-    context 'with correct credentials' do
-      include_context 'logged_user'
-
-      it "returns status ok" do
-        get :show, params: {id: person.to_param}
-        expect(response).to have_http_status(:ok)
-      end
+    it "returns status ok" do
+      get :show, params: {id: person.to_param}
+      expect(response).to have_http_status(:ok)
     end
   end
 
