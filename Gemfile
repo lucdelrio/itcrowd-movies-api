@@ -7,7 +7,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'activeadmin', '2.4'
 gem 'devise_token_auth'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 gem 'rails', '~> 6.0.2'
 
 # Reduces boot times through caching; required in config/boot.rb
